@@ -20,6 +20,7 @@ const params = {
 }
 axios.defaults.params = params
 
+app.use('/stories/', stories)
 app.use('/heroes/', heroes)
 app.get('/', (req, res) => {
   res.render('home', { message: 'Welcome folks!' })
