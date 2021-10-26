@@ -1,7 +1,7 @@
-// var express = require('express');
-// var router = express.Router();
-// const { getAllComics } = require('../Controllers/Heroes')
+var express = require('express');
+var router = express.Router();
+const { getAllComics } = require('../Controllers/comics.js')
 
-// router.get('', getAllComics)
+router.get('', getAllComics)
 
-// module.exports = router;
+module.exports = router;
