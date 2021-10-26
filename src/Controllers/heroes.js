@@ -1,4 +1,3 @@
-const axios = require('axios')
 const { getAll } = require('../services/api/getAll')
 
 exports.getAllHeroes = async (req, res) => {
