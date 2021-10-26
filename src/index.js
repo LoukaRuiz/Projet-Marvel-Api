@@ -3,6 +3,7 @@ const express = require('express')
 const axios = require('axios')
 const app = express()
 
+const heroes = require('./Routes/heroes')
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 app.use(express.static(__dirname + '/public/'))
@@ -19,36 +20,10 @@ const params = {
 }
 axios.defaults.params = params
 
+app.use('/heroes/', heroes)
 app.get('/', (req, res) => {
   res.render('home', { message: 'Welcome folks!' })
 })
-
-app.get('/heroes', async (req, res) => {
-  const heroes = await axios.get('characters')
-    .catch(function (error) {
-      res.json(error)
-    })
-
-  const [stories, comics] = await Promise.all(
-    await getHeroesDatas(heroes.data.data.results, 'stories'),
-    await getHeroesDatas(heroes.data.data.results, 'comics')
-  )
-
-  heroes.comics = comics
-  heroes.stories = stories
-
-  res.json(heroes.data)
-})
-
-async function getHeroesDatas(heroes, ressourceName) {
-  return await Promise.all(
-    heroes.map(async hero => {
-      const stories = await axios.get(`characters/${hero.id}/${ressourceName}`)
-      hero[ressourceName] = stories.data?.data.results ?? []
-      return hero
-    })
-  )
-}
 
 const port = 3000
 app.listen(port, () => console.log(`Listening on ${port}`))
