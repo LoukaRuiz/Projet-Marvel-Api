@@ -6,7 +6,9 @@ const axios = require('axios')
 const app = express()
 
 const heroes = require('./Routes/heroes')
+const stories = require('./Routes/stories')
 const comics = require('./Routes/comics')
+
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 app.use(express.static(__dirname + '/public/'))
@@ -22,8 +24,8 @@ const params = {
 axios.defaults.params = params
 
 app.use('/heroes/', heroes)
-
 app.use('/comics/', comics)
+app.use('/stories/', stories)
 
 
 app.get('/', (req, res) => {
