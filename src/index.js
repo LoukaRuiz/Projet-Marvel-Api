@@ -18,18 +18,5 @@ axios.defaults.params = params = {
   hash: HASH
 }
 
-app.get('/', (req, res) => {
-  res.render('home', { message: 'Welcome folks!' })
-})
-
-app.get('/heroes', async (req, res) => {
-  let hereos = await axios.get('characters')
-    .catch(function (error) {
-      res.json(error)
-    })
-
-  res.json(hereos.data)
-})
-
 const port = 3000
 app.listen(port, () => console.log(`Listening on ${port}`))
