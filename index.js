@@ -1,6 +1,6 @@
 const path = require('path')
 const express = require('express')
-const { default: axios } = require('axios')
+const axios = require('axios')
 const app = express()
 
 app.set('views', path.join(__dirname, 'views'))
@@ -17,19 +17,14 @@ app.get('/', (req, res) => {
 })
 
 app.get('/heroes', async (req, res) => {
-  let hereos = await axios.get('characters')
+  let hereos = await axios.get('hereos')
     .catch(function (error) {
       console.log(error);
     });
 
-  [hereos] = await Promise.all(
-    hereos.map(async hero => {
-      const comics = await axios.get(`characters/${hero.id}/comics`)
-      hero.comics = comics
-    })
-  )
+  const stringifyHereos = JSON.stringify(hereos.data)
 
-  res.send(hereos)
+  res.json(stringifyHereos)
 });
 
 const port = 3000
