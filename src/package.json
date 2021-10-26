@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "flows",
   "version": "1.0.0",
   "description": "We'll learn this technology through this project.",

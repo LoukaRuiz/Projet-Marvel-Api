@@ -10,13 +10,15 @@ app.use(express.json({ limit: '50MB' }))
 const API_KEY = '6a8ad0913e3b302f2b2a90716ec18a09'
 const TS = '1'
 const HASH = 'c2566addb3e2479e52f3fa755b3f044c'
-app.use(express.json({ limit: '50MB' }))
 axios.defaults.baseURL = `https://gateway.marvel.com/v1/public/`
 axios.defaults.params = params = {
   apikey: API_KEY,
   ts: TS,
   hash: HASH
 }
+
+const ComicsRoutes = require('./Routes/ComicsRoutes.js')
+app.use('/', ComicsRoutes)
 
 const port = 3000
 app.listen(port, () => console.log(`Listening on ${port}`))
