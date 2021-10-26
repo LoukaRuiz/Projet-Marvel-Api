@@ -1,3 +1,5 @@
+require('dotenv').config()
+const env = process.env
 const path = require('path')
 const express = require('express')
 const axios = require('axios')
@@ -8,24 +10,20 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 app.use(express.static(__dirname + '/public/'))
 app.use(express.json({ limit: '50MB' }))
-const API_KEY = '6a8ad0913e3b302f2b2a90716ec18a09'
-const TS = '1'
-const HASH = 'c2566addb3e2479e52f3fa755b3f044c'
-const LIMITGET = 2
-app.use(express.json({ limit: '50MB' }))
-axios.defaults.baseURL = `https://gateway.marvel.com/v1/public/`
+
+axios.defaults.baseURL = env.API
 const params = {
-  apikey: API_KEY,
-  ts: TS,
-  hash: HASH,
-  limit: LIMITGET
+  apikey: env.API_KEY,
+  ts: env.TS,
+  hash: env.HASH,
+  limit: env.LIMITGET
 }
 axios.defaults.params = params
 
 app.use('/heroes/', heroes)
+
 app.get('/', (req, res) => {
   res.render('home', { message: 'Welcome folks!' })
 })
 
-const port = 3000
-app.listen(port, () => console.log(`Listening on ${port}`))
+app.listen(env.PORT, () => console.log(`Listening on ${env.PORT}`))
