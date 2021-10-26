@@ -18,5 +18,12 @@ axios.defaults.params = params = {
   hash: HASH
 }
 
+
+
+const getStoriesRoute = require('./Routes/getStoriesRoutes.js')
+
+app.use('/', getStoriesRoute)
+
+
 const port = 3000
 app.listen(port, () => console.log(`Listening on ${port}`))
