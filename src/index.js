@@ -11,12 +11,14 @@ app.use(express.json({ limit: '50MB' }))
 const API_KEY = '6a8ad0913e3b302f2b2a90716ec18a09'
 const TS = '1'
 const HASH = 'c2566addb3e2479e52f3fa755b3f044c'
+const LIMITGET = 2
 app.use(express.json({ limit: '50MB' }))
 axios.defaults.baseURL = `https://gateway.marvel.com/v1/public/`
 const params = {
   apikey: API_KEY,
   ts: TS,
-  hash: HASH
+  hash: HASH,
+  limit: LIMITGET
 }
 axios.defaults.params = params
 
