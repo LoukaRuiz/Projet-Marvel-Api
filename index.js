@@ -12,15 +12,12 @@ app.use(express.json({ limit: '50MB' }));
 axios.defaults.baseURL = `https://gateway.marvel.com:443/v1/public`;
 axios.defaults.params = { apikey: API_KEY }
 
-
 app.get('/', (req, res) => {
   res.render('home', { message: 'Welcome folks!' })
 })
 
 app.get('/heroes', async (req, res) => {
-    
-    
-      let hereos = await axios.get('characters')
+  let hereos = await axios.get('characters')
     .catch(function (error) {
       console.log(error);
     });
@@ -32,7 +29,7 @@ app.get('/heroes', async (req, res) => {
     })
   )
 
-  res.send(hereos) 
+  res.send(hereos)
 });
 
 const port = 3000
