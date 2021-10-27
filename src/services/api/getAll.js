@@ -20,7 +20,6 @@ exports.getAll = async (req, res, parentDataName, childsName) => {
 async function getDatas(parentData, parentDataName, ressourceName) {
     return await Promise.all(
         parentData.map(async parent => {
-
             const child = await axios.get(`${parentDataName}/${parent.id}/${ressourceName}`)
             parent[ressourceName] = child.data?.data.results ?? []
             return parent
