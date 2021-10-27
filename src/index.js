@@ -3,12 +3,16 @@ const env = process.env
 const path = require('path')
 const express = require('express')
 const axios = require('axios')
+const cors = require("cors")
 const app = express()
 
 const heroes = require('./Routes/heroes')
 const stories = require('./Routes/stories')
 const comics = require('./Routes/comics')
 
+app.use(cors({
+  origin: env.CORS_ORIGIN
+}))
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 app.use(express.static(__dirname + '/public/'))
