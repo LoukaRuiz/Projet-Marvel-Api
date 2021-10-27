@@ -10,6 +10,7 @@ create your .env into src with :
     LIMITGET
     API
     PORT
+    CORS_ORIGIN
 
 cd src
 
