@@ -7,7 +7,7 @@ exports.getAll = async (req, res, parentDataName, childsName) => {
         })
 
     const [childs] = await Promise.all(
-        childsName.map(async childName => getDatas(parentData.data.data.results, parentDataName, childName))
+        childsName.map(async childName => await getDatas(parentData.data.data.results, parentDataName, childName))
     )
 
     for (let child = 0; child < childsName.length; child++) {
