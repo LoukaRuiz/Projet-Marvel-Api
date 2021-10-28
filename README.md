@@ -11,6 +11,7 @@ create your .env into src with :
     API
     PORT
     CORS_ORIGIN
+    PATHS
 
 cd src
 
