@@ -1,17 +1,17 @@
 const axios = require('axios')
 
-exports.getAll = async (req, res, parentDataName, childsName) => {
+exports.getAll = async (req, res, parentDataName, childrenName) => {
     const parentData = await axios.get(parentDataName)
         .catch(function (error) {
             res.json(error)
         })
 
-    const [childs] = await Promise.all(
-        childsName.map(async childName => await getDatas(parentData.data.data.results, parentDataName, childName))
+    const [children] = await Promise.all(
+        childrenName.map(async childName => await getDatas(parentData.data.data.results, parentDataName, childName))
     )
 
-    for (let child = 0; child < childsName.length; child++) {
-        parentData.data.data.results[childsName[child]] = childs[child]
+    for (let child = 0; child < childrenName.length; child++) {
+        parentData.data.data.results[childrenName[child]] = children[child]
     }
 
     res.json(parentData.data)
