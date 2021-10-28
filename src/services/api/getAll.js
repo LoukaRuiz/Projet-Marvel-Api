@@ -1,6 +1,6 @@
 const axios = require('axios')
 
-exports.getAll = async (req, res, parentDataName, childsName) => {
+exports.getAll = async (res, parentDataName, childsName) => {
     const parentData = await axios.get(parentDataName)
         .catch(function (error) {
             res.json(error)
