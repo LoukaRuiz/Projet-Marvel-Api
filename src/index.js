@@ -2,14 +2,20 @@ require('dotenv').config()
 const env = process.env
 const path = require('path')
 const express = require('express')
+const  rateLimit  =  require ( "express-rate-limit" ) ;
 const axios = require('axios')
 const cors = require("cors")
 const app = express()
-
 const heroes = require('./routes/heroes')
 const stories = require('./routes/stories')
 const comics = require('./routes/comics')
+const limiter = rateLimit({
+  windowMs: (60 * 60 * 1000) * 24,
+  max: 3000 
+});
 
+
+app.use(limiter)
 app.use(cors({
   origin: env.CORS_ORIGIN
 }))
