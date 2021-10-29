@@ -31,7 +31,6 @@ app.use('/heroes/', heroes)
 app.use('/comics/', comics)
 app.use('/stories/', stories)
 
-
 app.get('/', (req, res) => {
   res.render('home', { message: 'Welcome folks!' })
 })
