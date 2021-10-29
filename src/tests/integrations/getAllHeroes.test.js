@@ -3,18 +3,11 @@ const axios = require('axios')
 
 describe("getAllHeroes", () => {
     let getAllHeroesPath
+    let env
 
     beforeEach(() => {
-        const env = process.env
-        const port = env.PORT
-        getAllHeroesPath = "http://localhost:" + port + "/heroes"
-        const params = {
-            apikey: env.API_KEY,
-            ts: env.TS,
-            hash: env.HASH,
-            limit: env.LIMITGET
-        }
-        axios.defaults.params = params    
+        env = process.env
+        getAllHeroesPath = "http://localhost:" + env.PORT + "/heroes"
     })
 
     it('receives 200 status', async () => {
