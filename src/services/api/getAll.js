@@ -1,22 +1,22 @@
 const axios = require('axios')
 const env = process.env
 
-exports.getAll = async (req, res, parentDataName, childsName) => {
+exports.getAll = async (res, parentDataName, childsName) => {
     const parentData = await axios.get(parentDataName)
         .catch(function (error) {
             res.json(error)
         })
-        
-        var paths = env.PATHS.split(",");
 
-        childRoute = parentData
+    var paths = env.PATHS.split(",");
 
-        paths.forEach((element, index) => {
-            childRoute = childRoute[paths[index]]
-        });
-        
+    childRoute = parentData
+
+    paths.forEach((element, index) => {
+        childRoute = childRoute[paths[index]]
+    });
+
     const [childs] = await Promise.all(
-        await childsName.map(async childName => await getDatas(childRoute, parentDataName, childName))
+        childsName.map(async childName => await getData(parentData.data.data.results, parentDataName, childName))
     )
 
     for (let child = 0; child < childsName.length; child++) {
@@ -26,7 +26,7 @@ exports.getAll = async (req, res, parentDataName, childsName) => {
     res.json(parentData.data)
 }
 
-async function getDatas(parentData, parentDataName, ressourceName) {
+async function getData(parentData, parentDataName, ressourceName) {
     return await Promise.all(
         parentData.map(async parent => {
 

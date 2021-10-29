@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const { getAllStories } = require('../Controllers/Stories')
+const { getAllStories } = require('../controllers/stories')
 
 router.get('', getAllStories)
 

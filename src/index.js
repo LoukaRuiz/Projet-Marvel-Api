@@ -6,14 +6,13 @@ const  rateLimit  =  require ( "express-rate-limit" ) ;
 const axios = require('axios')
 const cors = require("cors")
 const app = express()
-const heroes = require('./Routes/heroes')
-const stories = require('./Routes/stories')
-const comics = require('./Routes/comics')
+const heroes = require('./routes/heroes')
+const stories = require('./routes/stories')
+const comics = require('./routes/comics')
 const limiter = rateLimit({
   windowMs: (60 * 60 * 1000) * 24,
   max: 3000 
 });
-
 
 
 app.use(limiter)
@@ -37,7 +36,6 @@ axios.defaults.params = params
 app.use('/heroes/', heroes)
 app.use('/comics/', comics)
 app.use('/stories/', stories)
-
 
 app.get('/', (req, res) => {
   res.render('home', { message: 'Welcome folks!' })

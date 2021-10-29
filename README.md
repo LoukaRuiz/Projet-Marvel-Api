@@ -13,11 +13,7 @@ create your .env into src with :
     CORS_ORIGIN
     PATHS
 
-cd src
-
-npm i
-
-nodemon src/index.js
+yarn dev
 
 ## Add your files
 
