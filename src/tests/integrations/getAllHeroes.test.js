@@ -17,7 +17,7 @@ describe("getAllHeroes", () => {
 
     it('receives 2 heroes', async () => {
         const res = await axios.get(getAllHeroesPath)
-        expect(res.data.data.results.length).toBe(2);
+        expect(res.data.data.results.length).toBe(Number(env.LIMITGET));
     });
 
     it('receives list of comics', async () => {
