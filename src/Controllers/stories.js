@@ -1,5 +1,5 @@
 const { getAll } = require('../services/api/getAll')
 
 exports.getAllStories = async (req, res) => {
-    await getAll(req, res, 'stories', ['characters', 'comics'])
+    await getAll(res, 'stories', ['characters', 'comics'])
 }
