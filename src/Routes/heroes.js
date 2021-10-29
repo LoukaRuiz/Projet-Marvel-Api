@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const { getAllHeroes } = require('../Controllers/Heroes')
+const { getAllHeroes } = require('../controllers/Heroes')
 
 router.get('', getAllHeroes)
 

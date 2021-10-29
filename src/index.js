@@ -6,9 +6,9 @@ const axios = require('axios')
 const cors = require("cors")
 const app = express()
 
-const heroes = require('./Routes/heroes')
-const stories = require('./Routes/stories')
-const comics = require('./Routes/comics')
+const heroes = require('./routes/heroes')
+const stories = require('./routes/stories')
+const comics = require('./routes/comics')
 
 app.use(cors({
   origin: env.CORS_ORIGIN
@@ -30,7 +30,6 @@ axios.defaults.params = params
 app.use('/heroes/', heroes)
 app.use('/comics/', comics)
 app.use('/stories/', stories)
-
 
 app.get('/', (req, res) => {
   res.render('home', { message: 'Welcome folks!' })

@@ -1,20 +1,20 @@
 const axios = require('axios')
 const env = process.env
 
-exports.getAll = async (req, res, parentDataName, childsName) => {
+exports.getAll = async (req, res, parentDataName, childrenName) => {
     const parentData = await axios.get(parentDataName)
         .catch(function (error) {
             res.json(error)
         })
-        
-        var paths = env.PATHS.split(",");
 
-        childRoute = parentData
+    var paths = env.PATHS.split(",");
 
-        paths.forEach((element, index) => {
-            childRoute = childRoute[paths[index]]
-        });
-        
+    childRoute = parentData
+
+    paths.forEach((element, index) => {
+        childRoute = childRoute[paths[index]]
+    });
+
     const [childs] = await Promise.all(
         await childsName.map(async childName => await getDatas(childRoute, parentDataName, childName))
     )
